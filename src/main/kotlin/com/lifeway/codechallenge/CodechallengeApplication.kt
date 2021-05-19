@@ -16,9 +16,9 @@ fun main(args: Array<String>) {
 class MessageResource {
 	@GetMapping
 	fun index(): List<Message> = listOf(
-			Message("1", "Hello!"),
-			Message("2", "Bonjour!"),
-			Message("3", "Privet!"),
+			Message("1", "The dog ran."),
+			Message("2", "How many words are in me?"),
+			Message("3", "My wife and I will celebrate ten years this year!"),
 	)
 }
 
