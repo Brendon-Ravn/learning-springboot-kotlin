@@ -2,9 +2,18 @@ package com.lifeway.codechallenge
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.data.annotation.Id
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.PostMapping
+
+
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
+
+import org.springframework.data.jdbc.repository.query.Query
+import org.springframework.data.repository.CrudRepository
 
 
 @SpringBootApplication
@@ -17,9 +26,7 @@ fun main(args: Array<String>) {
 
 
 @RestController
-class MessageResource {
-
-
+class MessageResource(val service: MessageService) {
 
 
 	@GetMapping
@@ -31,15 +38,30 @@ class MessageResource {
 			Message("2", "How many words are in me?"),
 			Message("3", "My wife and I will celebrate ten years this year!"),
 
-			fun () {
-				val words = //not sure how to use text from Message here
-				val numWords = words.trim()
-				val wordTotal = numWords.split("\\s").size
-				println(wordTotal)
-			}
 	)
 
 }
 
+@Service
+class MessageService(val db: MessageRepository){
 
-data class Message(val id: String?, val text: String)
+	fun findMessages(): List<Message> {
+		TODO()
+	}
+
+	fun post(message: Message) {
+
+	}
+
+}
+
+interface MessageRepository: CrudRepository<Message, String>{
+
+	@Query("select * from messages")
+	fun findMessages(): List<Message>
+}
+
+@Table("MESSAGES")
+data class Message(@Id val id: String?, val text: String)
+
+
