@@ -24,12 +24,21 @@ class MessageResource {
 
 	@GetMapping
 
+
+
 	fun index(): List<Any> = listOf(
 			Message("1", "The dog ran."),
 			Message("2", "How many words are in me?"),
 			Message("3", "My wife and I will celebrate ten years this year!"),
 
+			fun () {
+				val words = ?
+				val numWords = words.trim()
+				val wordTotal = numWords.split("\\s").size
+				println(wordTotal)
+			}
 	)
+
 
 
 
