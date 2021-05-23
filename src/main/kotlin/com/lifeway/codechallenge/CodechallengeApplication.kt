@@ -32,7 +32,7 @@ class MessageResource {
 			Message("3", "My wife and I will celebrate ten years this year!"),
 
 			fun () {
-				val words = ?
+				val words = //not sure what goes here
 				val numWords = words.trim()
 				val wordTotal = numWords.split("\\s").size
 				println(wordTotal)
